@@ -4,7 +4,6 @@ import streamlit as st
 import cv2
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import os
 from datetime import datetime
 from sklearn.linear_model import LinearRegression
@@ -161,3 +160,4 @@ if uploaded_file:
 
     except Exception as e:
         st.error(f"Error processing image: {e}")
+
