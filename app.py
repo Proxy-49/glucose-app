@@ -9,8 +9,8 @@ from sklearn.linear_model import LinearRegression
 # === Step 1: Calibration data from known glucose samples ===
 calibration_data = pd.DataFrame({
     "Glucose": [25, 50, 75, 100, 125],  # µM
-    "H": [0.722, 0.733, 0.740, 0.730, 0.786],  # normalized hue
-    "S": [0.087, 0.092, 0.102, 0.092, 0.113]   # normalized saturation
+    "H": [0.721975, 0.729640, 0.732043, 0.740653, 0.786354],
+    "S": [0.086809, 0.092191, 0.092608, 0.101584, 0.112603]
 })
 
 # === Step 2: Baseline from blank saliva ===
@@ -140,3 +140,4 @@ if uploaded_file:
 
     except Exception as e:
         st.error(f"Error processing image: {e}")
+
