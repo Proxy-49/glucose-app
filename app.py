@@ -153,12 +153,10 @@ if uploaded_file:
         glucose_avg = 0.6*g_H + 0.4*g_S
 
         st.subheader("Estimated Glucose (µM)")
-        st.write(f"H only: {g_H:.1f}")
-        st.write(f"S only: {g_S:.1f}")
-        st.write(f"H + S multivariate: {g_HS:.1f}")
-        st.write(f"Weighted average: {glucose_avg:.1f} µM")
+        st.write(f"{glucose_avg:.1f} µM")
 
     except Exception as e:
         st.error(f"Error processing image: {e}")
+
 
 
