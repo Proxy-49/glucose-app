@@ -65,7 +65,7 @@ def extract_bubble_features(image_path, visualize=True, top_n=20):
         h_mean, s_mean, v_mean = roi_hsv.mean(axis=0)
 
         # HSV pink filter
-        if 252/360 <= h_mean <= 290/360 and s_mean >= 0.07 and v_mean >= 0.60:
+        if 252/360 <= h_mean <= 290/360 and s_mean >= 0.04 and v_mean >= 0.60:
             score = (h_mean**8) * r
             candidates.append({
                 "x": int(x),
@@ -160,4 +160,5 @@ if uploaded_file:
 
     except Exception as e:
         st.error(f"Error processing image: {e}")
+
 
