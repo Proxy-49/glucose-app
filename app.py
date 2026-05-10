@@ -103,37 +103,6 @@ def standardize_image(input_path, output_path):
     img.save(output_path, format="JPEG", quality=95)
     return output_path
 
-# =====================================
-# RGB TO HSV
-# =====================================
-def rgb_to_hsv(rgb):
-    rgb = np.array(rgb)
-    maxc = rgb.max(axis=1)
-    minc = rgb.min(axis=1)
-
-    v = maxc
-    s = (maxc - minc) / (maxc + 1e-6)
-    s[maxc == 0] = 0
-
-    rc = (maxc - rgb[:,0]) / (maxc - minc + 1e-6)
-    gc = (maxc - rgb[:,1]) / (maxc - minc + 1e-6)
-    bc = (maxc - rgb[:,2]) / (maxc - minc + 1e-6)
-
-    h = np.zeros_like(maxc)
-
-    mask = maxc == rgb[:,0]
-    h[mask] = (bc - gc)[mask]
-
-    mask = maxc == rgb[:,1]
-    h[mask] = 2.0 + (rc - bc)[mask]
-
-    mask = maxc == rgb[:,2]
-    h[mask] = 4.0 + (gc - rc)[mask]
-
-    h = (h / 6.0) % 1.0
-    h[minc == maxc] = 0.0
-
-    return np.stack([h, s, v], axis=1)
 
 # =====================================
 # BUBBLE FEATURE EXTRACTION 
@@ -377,7 +346,13 @@ with tab2:
                     "S": [S_avg]
                 })
 
+                # Predict glucose
+                pred_H = model_H.predict(df_H)[0]
+                pred_S = model_S.predict(df_S)[0]
+                pred_HS = model_HS.predict(df_HS)[0]
                 
+                # Weighted blend
+                glucose_weighted = (0.3 * pred_H) + (0.2 * pred_S) + (0.5 * pred_HS)
 
                 st.image(img_rgb, caption="Uploaded Image")
                 st.subheader("Estimated Glucose (µM)")
