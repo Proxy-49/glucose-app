@@ -78,7 +78,7 @@ button[data-baseweb="tab"][data-selected="true"] {
 </style>
 """, unsafe_allow_html=True)
 
-st.title("Saliva Glucose Monitoring Platform")
+st.title("Glucose Monitoring Platform")
 
 # =====================================
 # IMAGE STANDARDISATION 
