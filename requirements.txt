@@ -5,3 +5,5 @@ pandas
 scikit-learn
 scikit-image
 pillow
+matplotlib
+streamlit-local-storage
